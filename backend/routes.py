@@ -76,7 +76,7 @@ def create_picture():
 def update_picture(id):
     picture_in = request.json
 
-    for index, picture in enumarate(data):
+    for index, picture in enumerate(data):
         if picture["id"] == id:
             data[index] = picture_in
             return picture_in, 201
