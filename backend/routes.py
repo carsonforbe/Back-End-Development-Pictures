@@ -44,12 +44,11 @@ def get_pictures():
 
 @app.route("/picture/<int:id>", methods=["GET"])
 def get_picture_by_id(id):
-    picture_in = request.json
 
     for picture in data:
-        if picture_in["id"] == picture["id"]:
+        if picture["id"] == id:
             return picture
-    return {"message":"picturenot found"}, 404
+    return {"message":"picture not found"}, 404
 
 ######################################################################
 # CREATE A PICTURE
@@ -78,7 +77,7 @@ def update_picture(id):
     picture_in = request.json
 
     for index, picture in enumarate(data):
-        if picture_in["id"] == picture["id"]:
+        if picture["id"] == id:
             data[index] = picture_in
             return picture_in, 201
     return {"message":"picture not found"}, 404
@@ -89,10 +88,9 @@ def update_picture(id):
 ######################################################################
 @app.route("/picture/<int:id>", methods=["DELETE"])
 def delete_picture(id):
-    picture_in = request.json
 
     for picture in data:
-        if picture_in["id"] == picture["id"]:
+        if picture["id"] == id:
             data.remove(picture)
             return "",204
     return {"message":"picture not found"}, 404
